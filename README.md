@@ -1,11 +1,8 @@
 # Soft1 Web Services PHP SDK
 
-___
 A plugin that simplifies the use of SoftOne WebServices.
 
 ## Installation
-
-___
 Install with Composer
 
 ```bash
@@ -13,7 +10,6 @@ composer require long-blade/softone-sdk
 ```
 
 ## Documentation
-___
 
 ### - Initialization
 First you need to set minimum require credentials for the api client.
@@ -118,8 +114,7 @@ $body = [
 **You can filter down the response array, picking only the wanted keys, by using the `$response->data(['rows', 'columns']);` method.**
 
 ## Testing
-___
-Install with Composer
+Run tests with composer
 
 ```bash
 composer test
