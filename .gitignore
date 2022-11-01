@@ -1,0 +1,10 @@
+composer.phar
+tests/PlaygroundTest.php
+/vendor/
+
+# Environments
+.env
+.idea
+
+#PHPUnit
+.phpunit.cache

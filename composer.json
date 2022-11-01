@@ -1,0 +1,30 @@
+{
+  "name": "long-blade/softone-sdk",
+  "description": "A plugin that simplifies the use of SoftOne WebServices.",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "SoftOne\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Michael Mavroforakis"
+    }
+  ],
+  "require-dev": {
+    "phpunit/phpunit": "^9.5"
+  },
+  "require": {
+    "guzzlehttp/guzzle": "^7.4",
+    "psr/log": "^1.1",
+    "ext-json": "*",
+    "ext-iconv": "*",
+    "ext-mbstring": "*",
+    "ext-intl": "*",
+    "php": ">=8.0"
+  },
+  "scripts": {
+    "test": "XDEBUG_MODE=coverage ./vendor/bin/phpunit --color --testsuite default"
+  }
+}
