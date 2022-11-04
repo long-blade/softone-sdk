@@ -119,7 +119,7 @@ class ServiceTest extends TestCase
     }
 
     //TODO: ADD THE REST WHEN CREATE EXTRA SERVICES
-    protected function serviceProvider(): array
+    public function serviceProvider(): array
     {
         return [
             [BrowserInfo::class, 'getBrowserInfo'],

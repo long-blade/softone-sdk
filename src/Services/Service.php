@@ -5,7 +5,6 @@ namespace SoftOne\Services;
 use SoftOne\Context;
 use SoftOne\Contracts\ServiceInterface;
 use SoftOne\Exception\InaccessiblePropertyException;
-use SoftOne\Exception\MissingApplicationBusinessObjectException;
 use SoftOne\Exception\UndefinedPropertyException;
 use SoftOne\Exception\UninitializedContextException;
 use SoftOne\Model;

@@ -1,6 +1,8 @@
 composer.phar
 tests/PlaygroundTest.php
 /vendor/
+_lando-config/
+.lando.yml
 
 # Environments
 .env

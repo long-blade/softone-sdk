@@ -12,21 +12,21 @@ class ClientTest extends TestCase
     /** @test */
     public function it_can_make_a_request_using_an_http_client()
     {
-        $gazzleRes = $this->createMock(ResponseInterface::class);
-        $gazzleStreamInterface = $this->createMock(StreamInterface::class);
+        $guzzleRes = $this->createMock(ResponseInterface::class);
+        $guzzleStreamInterface = $this->createMock(StreamInterface::class);
 
-        $gazzleRes->expects($this->exactly(2))
+        $guzzleRes->expects($this->exactly(2))
             ->method('getBody')
-            ->willReturn($gazzleStreamInterface);
+            ->willReturn($guzzleStreamInterface);
 
-        $gazzleStreamInterface->method('getContents')
+        $guzzleStreamInterface->method('getContents')
             ->willReturn('{"success":false, "errorcode":-2, "error":"Authenticate fails due to invalid credentials."}');
 
-        $response = new Response($gazzleRes);
+        $response = new Response($guzzleRes);
 
-        $gazzleClient = $this->createMock('GuzzleHttp\Client');
-        $gazzleClient->method('request')->willReturn($gazzleRes);
-        $client = new Client($gazzleClient);
+        $guzzleClient = $this->createMock('GuzzleHttp\Client');
+        $guzzleClient->method('request')->willReturn($guzzleRes);
+        $client = new Client($guzzleClient);
 
         $login = $this->createMock(Login::class);
         $login->expects($this->once())

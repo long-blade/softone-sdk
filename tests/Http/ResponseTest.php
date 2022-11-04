@@ -63,84 +63,84 @@ class ResponseTest extends TestCase
     /** @test @dataProvider httpResponsesForSuccess */
     public function it_constructs_a_response($input, $expected)
     {
-        $gazzleResponse = $this->createMock(ResponseInterface::class);
-        $gazzleStreamInterface = $this->createMock(StreamInterface::class);
+        $guzzleResponse = $this->createMock(ResponseInterface::class);
+        $guzzleStreamInterface = $this->createMock(StreamInterface::class);
 
-        $gazzleResponse->expects($this->once())
+        $guzzleResponse->expects($this->once())
             ->method('getBody')
-            ->willReturn($gazzleStreamInterface);
+            ->willReturn($guzzleStreamInterface);
 
-        $gazzleStreamInterface->method('getContents')
+        $guzzleStreamInterface->method('getContents')
             ->willReturn($input);
 
-        $response = new Response($gazzleResponse);
+        $response = new Response($guzzleResponse);
         $this->assertEquals($expected, $response->isSuccess());
     }
 
     /** @test @dataProvider httpResponsesForId */
     public function it_can_get_the_client_id_returned($input, $expected)
     {
-        $gazzleResponse = $this->createMock(ResponseInterface::class);
-        $gazzleStreamInterface = $this->createMock(StreamInterface::class);
+        $guzzleResponse = $this->createMock(ResponseInterface::class);
+        $guzzleStreamInterface = $this->createMock(StreamInterface::class);
 
-        $gazzleResponse->expects($this->once())
+        $guzzleResponse->expects($this->once())
             ->method('getBody')
-            ->willReturn($gazzleStreamInterface);
+            ->willReturn($guzzleStreamInterface);
 
-        $gazzleStreamInterface->method('getContents')
+        $guzzleStreamInterface->method('getContents')
             ->willReturn($input);
 
-        $response = new Response($gazzleResponse);
+        $response = new Response($guzzleResponse);
         $this->assertEquals($expected, $response->clientId());
     }
 
     /** @test @dataProvider httpResponsesForData */
     public function it_can_create_array_of_data_for_successful_responses($input, $expected)
     {
-        $gazzleResponse = $this->createMock(ResponseInterface::class);
-        $gazzleStreamInterface = $this->createMock(StreamInterface::class);
+        $guzzleResponse = $this->createMock(ResponseInterface::class);
+        $guzzleStreamInterface = $this->createMock(StreamInterface::class);
 
-        $gazzleResponse->expects($this->once())
+        $guzzleResponse->expects($this->once())
             ->method('getBody')
-            ->willReturn($gazzleStreamInterface);
+            ->willReturn($guzzleStreamInterface);
 
-        $gazzleStreamInterface->method('getContents')
+        $guzzleStreamInterface->method('getContents')
             ->willReturn($input);
 
-        $response = new Response($gazzleResponse);
+        $response = new Response($guzzleResponse);
         $this->assertEquals($expected, $response->data(['objs']));
     }
 
     /** @test @dataProvider httpResponsesForData */
     public function it_skips_undefined_body_keys($input, $expected)
     {
-        $gazzleResponse = $this->createMock(ResponseInterface::class);
-        $gazzleStreamInterface = $this->createMock(StreamInterface::class);
+        $guzzleResponse = $this->createMock(ResponseInterface::class);
+        $guzzleStreamInterface = $this->createMock(StreamInterface::class);
 
-        $gazzleResponse->expects($this->once())
+        $guzzleResponse->expects($this->once())
             ->method('getBody')
-            ->willReturn($gazzleStreamInterface);
+            ->willReturn($guzzleStreamInterface);
 
-        $gazzleStreamInterface->method('getContents')
+        $guzzleStreamInterface->method('getContents')
             ->willReturn($input);
 
-        $response = new Response($gazzleResponse);
+        $response = new Response($guzzleResponse);
         $this->assertEmpty($response->data(['undefined']));
     }
 
     /** @test */
     public function it_will_return_false_for_requests_without_success_property_in_response_payload()
     {
-        $gazzleResponse = $this->createMock(ResponseInterface::class);
-        $gazzleStreamInterface = $this->createMock(StreamInterface::class);
+        $guzzleResponse = $this->createMock(ResponseInterface::class);
+        $guzzleStreamInterface = $this->createMock(StreamInterface::class);
 
-        $gazzleResponse->expects($this->once())
+        $guzzleResponse->expects($this->once())
             ->method('getBody')
-            ->willReturn($gazzleStreamInterface);
+            ->willReturn($guzzleStreamInterface);
 
-        $gazzleStreamInterface->method('getContents')
+        $guzzleStreamInterface->method('getContents')
             ->willReturn('{}'); // mo response
-        $softOneRes = new Response($gazzleResponse);
+        $softOneRes = new Response($guzzleResponse);
 
         $this->assertEquals([], $softOneRes->body());
         $this->assertFalse($softOneRes->isSuccess());
