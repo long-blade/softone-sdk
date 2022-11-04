@@ -25,6 +25,6 @@
     "php": ">=8.0"
   },
   "scripts": {
-    "test": "XDEBUG_MODE=coverage ./vendor/bin/phpunit --color --testsuite default"
+    "test": "XDEBUG_MODE=coverage php -d extension=iconv.so ./vendor/bin/phpunit --color --testsuite default"
   }
 }
