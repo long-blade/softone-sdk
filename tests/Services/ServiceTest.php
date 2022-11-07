@@ -6,6 +6,7 @@ use SoftOne\Auth\Authorizer;
 use SoftOne\Context;
 use SoftOne\Exception\UninitializedContextException;
 use SoftOne\Services\BrowserInfo;
+use SoftOne\Services\Data;
 use SoftOne\Services\Login;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
@@ -123,6 +124,7 @@ class ServiceTest extends TestCase
     {
         return [
             [BrowserInfo::class, 'getBrowserInfo'],
+            [Data::class, 'setData'],
             [Login::class, 'login'],
         ];
     }
