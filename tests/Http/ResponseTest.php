@@ -145,4 +145,22 @@ class ResponseTest extends TestCase
         $this->assertEquals([], $softOneRes->body());
         $this->assertFalse($softOneRes->isSuccess());
     }
+
+    /** @test */
+    public function it_accepts_object_syntax_for_body_properties()
+    {
+        $guzzleResponse = $this->createMock(ResponseInterface::class);
+        $guzzleStreamInterface = $this->createMock(StreamInterface::class);
+
+        $guzzleResponse->expects($this->once())
+            ->method('getBody')
+            ->willReturn($guzzleStreamInterface);
+        $guzzleStreamInterface->method('getContents')
+            ->willReturn('{"success": true,"id": 1480}');
+
+
+        $response = new Response($guzzleResponse);
+
+        $this->assertEquals('1480', $response->id);
+    }
 }

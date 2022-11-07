@@ -29,6 +29,19 @@ class Response implements SoftOneResponseInterface
     }
 
     /**
+     * @param string $key
+     * @return mixed|null
+     */
+    public function __get(string $key)
+    {
+        if ($this->isSuccess()) {
+            return $this->body[$key];
+        }
+
+        return null;
+    }
+
+    /**
      * @return bool
      */
     public function isSuccess(): bool
