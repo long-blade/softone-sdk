@@ -48,8 +48,7 @@ Context::initialize(
 Once the client is initialized, you can then create a service, and use it to communicate with the api
 
 ### - Reading
-Most of the time what you really need is to simply make a `get` request in order to find some ERP data.
-For that, we can construct a simple find query by using the `BrowserInfo` method.
+Fetching data from ERP can be achieved with a get request using BrowserInfo method constructing a simple query
 
 ```php
 use SoftOne\Services\BrowserInfo;
@@ -68,9 +67,51 @@ use SoftOne\Client;
 $response = Client::get($foo)
 ```
 
+### - Setting data
+There are two methods available for setting data, `insert()` & `update()`
+
+**Insert the data of a record in a Business Object**
+```php
+use SoftOne\Services\Data;
+
+// Insert a new customer
+$request = Data::insert('CUSTOMER',[
+            'NAME' => 'TEST Soft One Technologies S.A.',
+            'AFM' => '999863881',
+            'EMAIL' => 'johng@softone.gr',
+            'PHONE01' => '+302109484797',
+            'FAX' => '9484094',
+            'ADDRESS' => '6 Poseidonos street',
+            'ZIP' => '17674',
+        ]);
+
+$customer = Client::get($request);
+
+$customer->id // returns the new created customer id
+```
+
+**Modify the data of a record in a Business Object identified by a KEY**
+```php
+use SoftOne\Services\Data;
+
+// Update a new customer with the id of 47
+$request = Data::update('CUSTOMER', '47', [
+            'NAME' => 'TEST Soft One Technologies S.A.',
+            'AFM' => '999863881',
+            'EMAIL' => 'johng@softone.gr',
+            'PHONE01' => '+302109484797',
+            'FAX' => '9484094',
+            'ADDRESS' => '6 Poseidonos street',
+            'ZIP' => '17674',
+        ]);
+
+$customer = Client::get($request);
+
+$customer->isSuccess() // true if updated
+```
+
 ### - Response
-*After performing a `get` request by using the `SoftOne\Client`, in return we get a `SoftOne\Http\Response` that 
-implements the `SoftOneResponseInterface`.*
+*The response implements the `SoftOne\Contracts\SoftoneResponseInterface`.*
 
 ```php
 $response->isSuccess(); // Returns bool
@@ -111,7 +152,15 @@ $body = [
 ];
 ```
 
-**You can filter down the response array, picking only the wanted keys, by using the `$response->data(['rows', 'columns']);` method.**
+**The response array can be filtered by using $response->data(['key1', 'key2',....]); method**
+
+```php
+$response->data(['columns', 'rows']);
+
+//OR access explicitly to response obj
+$response->rows
+$response->columns
+```
 
 ## Testing
 Run tests with composer
