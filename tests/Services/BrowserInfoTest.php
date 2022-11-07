@@ -56,6 +56,16 @@ class BrowserInfoTest extends TestCase
     }
 
     /** @test */
+    public function it_performs_authorization()
+    {
+        $auth = $this->createMock(Authorizer::class);
+        $auth->expects($this->once())->method('isAuthenticated')->willReturn(false);
+        $auth->expects($this->once())->method('authorize');
+
+        new BrowserInfo($auth);
+    }
+
+    /** @test */
     public function it_can_set_a_list()
     {
         $auth = $this->createMock(Authorizer::class);
